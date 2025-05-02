@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useDiagnostics } from "./hooks/useDiagnostics";
 
 function App() {
+  const data = useDiagnostics();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Robot Diagnostics</h1>
+      {data ? (
+        <ul>
+          <li>
+            <strong>Temperature:</strong> {data.temperature} °C
+          </li>
+          <li>
+            <strong>Battery:</strong> {data.battery} %
+          </li>
+          <li>
+            <strong>CPU:</strong> {data.cpu} %
+          </li>
+          <li>
+            <strong>Timestamp:</strong>{" "}
+            {new Date(data.timestamp).toLocaleTimeString()}
+          </li>
+        </ul>
+      ) : (
+        <p>Waiting for diagnostics...</p>
+      )}
     </div>
   );
 }

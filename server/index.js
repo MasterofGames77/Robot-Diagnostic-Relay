@@ -12,6 +12,7 @@ const wss = new WebSocket.Server({ server });
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
+  // Send diagnostics every second
   const sendDiagnostics = setInterval(() => {
     const diagnostics = {
       temperature: (20 + Math.random() * 10).toFixed(1), // °C
