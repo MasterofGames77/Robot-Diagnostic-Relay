@@ -11,7 +11,7 @@ export const useDiagnostics = () => {
   const [data, setData] = useState<DiagnosticData | null>(null);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:4000");
+    const socket = new WebSocket("wss://robot-diagnostic-relay.onrender.com");
 
     socket.onmessage = (event) => {
       const parsed = JSON.parse(event.data);
